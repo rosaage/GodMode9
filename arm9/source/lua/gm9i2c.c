@@ -12,8 +12,8 @@ static int i2c_read(lua_State *L) {
         return luaL_error(L, "Invalid device ID: %d (must be 0-17)", dev_id);
     }
 
-    if (length <= 0 || length > 1024) {
-        return luaL_error(L, "Invalid length: %d (must be 1-1024)", length);
+    if (length <= 0 || length > 64) {
+        return luaL_error(L, "Invalid length: %d (must be 1-64)", length);
     }
 
     if (reg_addr < 0 || reg_addr > 255) {
@@ -61,8 +61,8 @@ static int i2c_write(lua_State *L) {
         return luaL_error(L, "Invalid device ID: %d (must be 0-17)", dev_id);
     }
 
-    if (length <= 0 || length > 1024) {
-        return luaL_error(L, "Invalid data length: %d (must be 1-1024)", length);
+    if (length <= 0 || length > 64) {
+        return luaL_error(L, "Invalid data length: %d (must be 1-64)", length);
     }
 
     if (reg_addr < 0 || reg_addr > 255) {
