@@ -8,6 +8,7 @@
 #include "fsutil.h"
 #include "unittype.h"
 #include "nand.h"
+#include "gyro.h"
 #include "gm9loader.h"
 #include "gm9os.h"
 #include "gm9ui.h"
@@ -187,6 +188,9 @@ bool ExecuteLuaScript(const char* path_script) {
 
     lua_pushinteger(L, GetNandSizeSectors(NAND_SYSNAND) * 0x200);
     lua_setglobal(L, "NANDSIZE");
+
+    lua_pushinteger(L, GetGyroModel());
+    lua_setglobal(L, "GYROMODEL");
 
     lua_pushboolean(L, IS_DEVKIT);
     lua_setglobal(L, "IS_DEVKIT");
