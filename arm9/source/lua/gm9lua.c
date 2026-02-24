@@ -189,7 +189,12 @@ bool ExecuteLuaScript(const char* path_script) {
     lua_pushinteger(L, GetNandSizeSectors(NAND_SYSNAND) * 0x200);
     lua_setglobal(L, "NANDSIZE");
 
-    lua_pushinteger(L, GetGyroModel());
+    u32 gyro_model = GetGyroModel();
+    if (gyro_model) {
+        lua_pushinteger(L, gyro_model);
+    } else {
+        lua_pushnil(L);
+    }
     lua_setglobal(L, "GYROMODEL");
 
     lua_pushboolean(L, IS_DEVKIT);
