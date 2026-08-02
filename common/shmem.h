@@ -20,7 +20,7 @@
 
 #include <arm.h>
 
-#define SHMEM_BUFFER_SIZE 2048
+#define SHMEM_BUFFER_SIZE 20480
 
 typedef struct {
 	union {

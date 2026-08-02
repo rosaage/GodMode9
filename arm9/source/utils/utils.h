@@ -7,3 +7,4 @@
 #include "nandutil.h"
 #include "scripting.h"
 #include "sysinfo.h"
+#include "mcuflash.h"

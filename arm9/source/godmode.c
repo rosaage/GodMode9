@@ -2309,6 +2309,7 @@ u32 HomeMoreMenu(char* current_path) {
     int bright = ++n_opt;
     int calib = ++n_opt;
     int sysinfo = ++n_opt;
+    int mcu_flasher = ++n_opt;
     int readme = (FindVTarFileInfo(VRAM0_README_MD, NULL)) ? (int) ++n_opt : -1;
 
     if (sdformat > 0) optionstr[sdformat - 1] = STR_SD_FORMAT_MENU;
@@ -2320,6 +2321,7 @@ u32 HomeMoreMenu(char* current_path) {
     if (bright > 0) optionstr[bright - 1] = STR_CONFGURE_BRIGHTNESS;
     if (calib > 0) optionstr[calib - 1] = STR_CALIBRATE_TOUCHSCREEN;
     if (sysinfo > 0) optionstr[sysinfo - 1] = STR_SYSTEM_INFO;
+    if (mcu_flasher > 0) optionstr[mcu_flasher - 1] = "MCU Flasher";
     if (readme > 0) optionstr[readme - 1] = STR_SHOW_README;
 
     int user_select = ShowSelectPrompt(n_opt, optionstr, "%s", promptstr);
@@ -2434,6 +2436,10 @@ u32 HomeMoreMenu(char* current_path) {
     else if (user_select == calib) { // touchscreen calibration
         ShowPrompt(false, "%s",
             (ShowTouchCalibrationDialog()) ? STR_TOUCHSCREEN_CALIBRATION_SUCCESS : STR_TOUCHSCREEN_CALIBRATION_FAILED);
+        return 0;
+    }
+    else if (user_select == mcu_flasher) { // MCU Flasher
+        FlashMCU();
         return 0;
     }
     else if (user_select == sysinfo) { // Myria's system info
